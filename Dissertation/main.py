@@ -18,3 +18,11 @@ import urllib.request
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+
+"""x = torch.rand(5, 3)
+print(x)"""
