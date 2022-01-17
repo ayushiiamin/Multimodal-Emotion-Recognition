@@ -31,3 +31,5 @@ print(x)"""
 """ Importing the dataset """
 
 from mmsdk import mmdatasdk
+
+cmumosei_highlevel = mmdatasdk.mmdataset(mmdatasdk.cmu_mosei.highlevel,'cmumosei/')
