@@ -26,3 +26,8 @@ import torch.optim as optim
 
 """x = torch.rand(5, 3)
 print(x)"""
+
+
+""" Importing the dataset """
+
+from mmsdk import mmdatasdk
