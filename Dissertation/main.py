@@ -32,4 +32,11 @@ print(x)"""
 
 from mmsdk import mmdatasdk
 
-cmumosei_highlevel = mmdatasdk.mmdataset(mmdatasdk.cmu_mosei.highlevel,'cmumosei/')
+import numpy
+def myavg(intervals,features):
+        return numpy.average(features,axis=0)
+
+#cmumosei_highlevel = mmdatasdk.mmdataset(mmdatasdk.cmu_mosei.highlevel,'cmumosei/')
+##cmumosei_highlevel.align('glove_vectors',collapse_functions=[myavg])
+#cmumosei_highlevel.add_computational_sequences(mmdatasdk.cmu_mosei.labels,'cmumosei/')
+#cmumosei_highlevel.align('Opinion Segment Labels')
