@@ -74,7 +74,7 @@ print(" ")
 print(data.keys())
 print(data['test'].keys())
 #print(data['train'].shape)
-print(data['test']['vision'][56])
+#print(data['test']['vision'][56])
 print(data['test']['audio'][0].shape)
 print(data['test']['text'][0].shape)
 print(data['test']['labels'][2])
@@ -82,3 +82,13 @@ print(data['test']['id'][0])
 
 
 print(type(data))
+
+
+print(type(data['train']['vision']))
+print(type(data['valid']['labels']))
+print(data.keys())
+print(data['test'].keys())
+
+
+print(data['test']['id'][5])
+print(data['test']['labels'][6])
