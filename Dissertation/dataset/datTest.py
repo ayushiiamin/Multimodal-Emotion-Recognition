@@ -132,29 +132,35 @@ df_eyTrain.loc[df_eyTrain["Happy"] > 3, "Happy"] = 3           #[4]
 #Print out the min and max of each column again
 print(df_eyTrain.agg([min, max]))
 
+#Printing out the number of rows and columns in the DataFrame
 print(df_eyTrain.shape)
 
-# for i in range(15290):
-#     emoTr = df_eyTrain.iloc[i]
-#c= 0
 
-#print(df_eyTrain.idxmax(axis=1))
+#As mentioned previously, the maximum value an emotion can have is 3.0 (indicates a high presence of that emotion) 
+#and the minimum value the emotion can have is 0.0 (indicates the emotion is not present)
 
+#The DataFrame has 6 columns of the order – “Anger”, “Disgust”, “Fear”, “Happy”, “Sad”, “Surprise”
+#Under each column, a value between [0,3] is written, indicating the presence level of the emotion
+
+#To ensure the ML model detects the right emotion, a list called “emoListTrain” is initialized to store the 
+#column names (emotions) which have the maximum value for each row. The highest value in a row will indicate 
+#a strong presence of that emotion.
+
+#This below line of code uses the idxmax() function to find the column name with the maximum value
+#The result (column name) is then stored in a list called emoListTrain
 emoListTrain = list(df_eyTrain.idxmax(axis=1))     #[10]
 
-#print(testList)
 
 for row, emo in zip(range(15290), emoListTrain):       #[11]
     df_eyTrain.loc[row, emo] = 1           #[7]
     df_eyTrain.loc[row, df_eyTrain.columns != emo] = 0       #[8]  #[9]
 
-#print(" ")
-
-#print(df_eyTrain)
-
 df_eyTrain.to_csv('./csv_files/eTrain.csv', index = False)
 
 print("ey_train.h5 converted to CSV")
+
+
+
 
 
 print(" ")
