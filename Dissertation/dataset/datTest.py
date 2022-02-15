@@ -235,3 +235,64 @@ for row, emo in zip(range(2291), emoListValid):
 df_eyValid.to_csv("./csv_files/eValid.csv", index = False)
 
 print("ey_valid.h5 converted to CSV")
+
+print(" ")
+print(" ")
+
+print("Audio/text/video now")
+
+print(" ")
+
+print("Text now")
+print("-----------Text train-----------")
+
+dataMosei_train_text = h5py.File("data/text_train_emb.h5", "r")
+
+text_trainKeys = []
+
+for key in dataMosei_train_text.keys():
+    text_trainKeys.append(key)
+
+print(text_trainKeys)
+
+textTrainArr = np.array(dataMosei_train_text.get("d1"))
+print(textTrainArr.shape)
+
+# print(textTrainArr[0])
+import mmsdk
+from mmsdk import mmdatasdk as md
+
+# visual_field = 'CMU_MOSI_VisualFacet_4.1'
+# acoustic_field = 'CMU_MOSI_COVAREP'
+text_field = 'CMU_MOSEI_TimestampedWords'
+
+
+features = [
+    text_field
+]
+# recipe = {feat: os.path.join(DATA_PATH, feat) + '.csd' for feat in features}
+# dataset = md.mmdataset(recipe)
+
+recipe = {feat: os.path.join('data/', feat) + '.csd' for feat in features}
+dataset = md.mmdataset(recipe)
+# text_field = 'CMU_MOSI_ModifiedTimestampedWords'
+
+print(" ")
+
+print(list(dataset.keys()))
+print("=" * 80)
+
+print(list(dataset[text_field].keys())[:10])
+print("=" * 80)
+
+some_id = list(dataset[text_field].keys())[15]
+print(list(dataset[text_field][some_id].keys()))
+print("=" * 80)
+
+print(list(dataset[text_field][some_id]['intervals'].shape))
+print("=" * 80)
+
+print(list(dataset[text_field][some_id]['features'].shape))
+print("=" * 80)
+
+print(list(dataset[text_field][some_id]['features'][45]))
