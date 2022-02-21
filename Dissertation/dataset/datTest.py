@@ -148,14 +148,14 @@ print(df_eyTrain.shape)
 
 #This below line of code uses the idxmax() function to find the column name with the maximum value
 #The result (column name) is then stored in a list called emoListTrain
-emoListTrain = list(df_eyTrain.idxmax(axis=1))     #[10]
+# emoListTrain = list(df_eyTrain.idxmax(axis=1))     #[10]
 
 
-for row, emo in zip(range(15290), emoListTrain):       #[11]
-    df_eyTrain.loc[row, emo] = 1           #[7]
-    df_eyTrain.loc[row, df_eyTrain.columns != emo] = 0       #[8]  #[9]
+# for row, emo in zip(range(15290), emoListTrain):       #[11]
+#     df_eyTrain.loc[row, emo] = 1           #[7]
+#     df_eyTrain.loc[row, df_eyTrain.columns != emo] = 0       #[8]  #[9]
 
-df_eyTrain.to_csv('./csv_files/eTrain.csv', index = False)
+# df_eyTrain.to_csv('./csv_files/eTrain.csv', index = False)
 
 print("ey_train.h5 converted to CSV")
 
@@ -193,11 +193,11 @@ print(df_eyTest.shape)
 
 emoListTest = list(df_eyTest.idxmax(axis=1))
 
-for row, emo in zip(range(4832), emoListTest):       #[11]
-    df_eyTest.loc[row, emo] = 1           #[7]
-    df_eyTest.loc[row, df_eyTest.columns != emo] = 0
+# for row, emo in zip(range(4832), emoListTest):       #[11]
+#     df_eyTest.loc[row, emo] = 1           #[7]
+#     df_eyTest.loc[row, df_eyTest.columns != emo] = 0
 
-df_eyTest.to_csv('./csv_files/eTest.csv', index = False)
+# df_eyTest.to_csv('./csv_files/eTest.csv', index = False)
 
 print("ey_test.h5 converted to CSV")
 
@@ -228,11 +228,11 @@ print(df_eyValid.shape)
 
 emoListValid = list(df_eyValid.idxmax(axis=1))
 
-for row, emo in zip(range(2291), emoListValid):
-    df_eyValid.loc[row, emo] = 1
-    df_eyValid.loc[row, df_eyValid.columns != emo] = 0
+# for row, emo in zip(range(2291), emoListValid):
+#     df_eyValid.loc[row, emo] = 1
+#     df_eyValid.loc[row, df_eyValid.columns != emo] = 0
 
-df_eyValid.to_csv("./csv_files/eValid.csv", index = False)
+# df_eyValid.to_csv("./csv_files/eValid.csv", index = False)
 
 print("ey_valid.h5 converted to CSV")
 
@@ -258,23 +258,49 @@ print(text_trainKeys)
 textTrainArr = np.array(dataMosei_train_text.get("d1"))
 print(textTrainArr.shape)
 
+# print(textTrainArr[4])
+print(" ")
+
+newTextTrainArr = textTrainArr.reshape(15290*20,300)
+
+print(newTextTrainArr[0])
+
+# np.set_printoptions(formatter={'float_kind':'{:f}'.format})
+
+# list4 = textTrainArr.tolist()
+
+# print("--------------------------------------")
+# print(list4)
+
+# print(list(textTrainArr[4]))
 # print(textTrainArr[0])
+
+
 import mmsdk
 from mmsdk import mmdatasdk as md
+from sklearn.metrics.pairwise import cosine_similarity
 
 # visual_field = 'CMU_MOSI_VisualFacet_4.1'
 # acoustic_field = 'CMU_MOSI_COVAREP'
+
+# text_field = 'CMU_MOSEI_TimestampedWordVectors'
 text_field = 'CMU_MOSEI_TimestampedWords'
 
+text_field_GLOVE = 'CMU_MOSEI_TimestampedWordVectors'
 
 features = [
     text_field
 ]
+
+glove_features = [text_field_GLOVE]
 # recipe = {feat: os.path.join(DATA_PATH, feat) + '.csd' for feat in features}
 # dataset = md.mmdataset(recipe)
 
 recipe = {feat: os.path.join('data/', feat) + '.csd' for feat in features}
 dataset = md.mmdataset(recipe)
+
+recipeGlove = {glo: os.path.join('data/', glo) + '.csd' for glo in glove_features}
+datasetGlo = md.mmdataset(recipeGlove)
 # text_field = 'CMU_MOSI_ModifiedTimestampedWords'
 
 print(" ")
@@ -295,4 +321,84 @@ print("=" * 80)
 print(list(dataset[text_field][some_id]['features'].shape))
 print("=" * 80)
 
-print(list(dataset[text_field][some_id]['features'][45]))
+# print(list(textTrainArr[4]))
+# print(" ")
+print(list(dataset[text_field][some_id]['features'][4]))
+
+
+print(" ")
+
+print(list(datasetGlo.keys()))
+print("=" * 80)
+
+print(list(datasetGlo[text_field_GLOVE].keys())[:10])
+print("=" * 80)
+
+some_id = list(datasetGlo[text_field_GLOVE].keys())[15]
+print(list(datasetGlo[text_field_GLOVE][some_id].keys()))
+print("=" * 80)
+
+print(list(datasetGlo[text_field_GLOVE][some_id]['intervals'].shape))
+print("=" * 80)
+
+print(list(datasetGlo[text_field_GLOVE][some_id]['features'].shape))
+print("=" * 80)
+
+# print(list(textTrainArr[4]))
+# print(" ")
+print((datasetGlo[text_field_GLOVE][some_id]['features'][9]))
+print("=" * 80)
+
+print((dataset[text_field][some_id]['features'][9]))
+print("=" * 80)
+
+# print(list(datasetGlo[text_field_GLOVE][some_id]['features'][5]))
+
+
+print(" ")
+print(" ")
+import math
+def cosine_similarity(v1,v2):
+    "compute cosine similarity of v1 to v2: (v1 dot v2)/{||v1||*||v2||)"
+    sumxx, sumxy, sumyy = 0, 0, 0
+    for i in range(len(v1)):
+        x = v1[i]; y = v2[i]
+        sumxx += x*x
+        sumyy += y*y
+        sumxy += x*y
+    return sumxy/math.sqrt(sumxx*sumyy)
+
+v1,v2 = (newTextTrainArr[28]), ((datasetGlo[text_field_GLOVE][some_id]['features'][202]))
+print(cosine_similarity(v1,v2))
+# cosIne = cosine_similarity( (list(dataset[text_field_GLOVE][some_id]['features'][3])), (list(datasetGlo[text_field_GLOVE][some_id]['features'][4])) )
+# print(cosIne)
+
+print(" ")
+print(len(newTextTrainArr))
+print(len(datasetGlo[text_field_GLOVE][some_id]['features'][1]))
+
+print("LETS SPLIT ARRAY")
+
+print(" ")
+
+
+
+
+for j in range(len( ((datasetGlo[text_field_GLOVE][some_id]['features'])) )):
+    if(cosine_similarity( (newTextTrainArr[188]), ((datasetGlo[text_field_GLOVE][some_id]['features'][j])) ) == 1.0):
+        print("FOUND IT!!")
+        print("j value - ", j)
+        print( (dataset[text_field][some_id]['features'][j]) )
+        print("=" * 80)
+        # break
+    # else:
+    #     print("BAD LUCK")
+
+print("REACHED END OF LOOP")
+# latestArr = np.array_split(newTextTrainArr, 20)
+
+# print(latestArr)
+# print(" ")
+# print((latestArr[0]))
+# print(" ")
+# # print((latestArr[0][0]))
