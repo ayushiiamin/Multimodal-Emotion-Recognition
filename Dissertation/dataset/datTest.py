@@ -385,7 +385,7 @@ print(" ")
 
 
 for j in range(len( ((datasetGlo[text_field_GLOVE][some_id]['features'])) )):
-    if(cosine_similarity( (newTextTrainArr[373]), ((datasetGlo[text_field_GLOVE][some_id]['features'][j])) ) == 1.0):
+    if(cosine_similarity( (newTextTrainArr[451]), ((datasetGlo[text_field_GLOVE][some_id]['features'][j])) ) == 1.0):
         print("FOUND IT!!")
         print("j value - ", j)
         print( (dataset[text_field][some_id]['features'][j]) )
