@@ -288,6 +288,8 @@ text_field = 'CMU_MOSEI_TimestampedWords'
 
 text_field_GLOVE = 'CMU_MOSEI_TimestampedWordVectors'
 
+
+
 features = [
     text_field
 ]
@@ -385,20 +387,52 @@ print(" ")
 
 
 for j in range(len( ((datasetGlo[text_field_GLOVE][some_id]['features'])) )):
-    if(cosine_similarity( (newTextTrainArr[614]), ((datasetGlo[text_field_GLOVE][some_id]['features'][j])) ) == 1.0):
+    if(cosine_similarity( (newTextTrainArr[752]), ((datasetGlo[text_field_GLOVE][some_id]['features'][j])) ) == 1.0):
         print("FOUND IT!!")
         print("j value - ", j)
         print( (dataset[text_field][some_id]['features'][j]) )
+        # print( (dataset[text_field][some_id]['intervals'][j]) )
+        # print( (datasetGlo[text_field_GLOVE][some_id]['intervals'][j]) )
         print("=" * 80)
         # break
     # else:
     #     print("BAD LUCK")
 
 print("REACHED END OF LOOP")
-# latestArr = np.array_split(newTextTrainArr, 20)
 
-# print(latestArr)
+
+print(" ")
+
+
+# print(textTrainArr[0])
+
+
+
+
+# label_test = 'CMU_MOSEI_Labels'
+
+
+# label_features = [label_test]
+
+# recipeLabel = {lab: os.path.join('data/', lab) + '.csd' for lab in label_features}
+# datasetLab = md.mmdataset(recipeLabel)
+
 # print(" ")
-# print((latestArr[0]))
-# print(" ")
-# # print((latestArr[0][0]))
+
+# print(list(datasetLab.keys()))
+# print("=" * 80)
+
+# print(list(datasetLab[label_test].keys())[:10])
+# print("=" * 80)
+
+# some_id = list(datasetLab[label_test].keys())[15]
+# print(list(datasetLab[label_test][some_id].keys()))
+# print("=" * 80)
+
+# print(list(datasetLab[label_test][some_id]['intervals'].shape))
+# print("=" * 80)
+
+# print(list(datasetLab[label_test][some_id]['features'].shape))
+# print("=" * 80)
+
+# print(list(datasetLab[label_test][some_id]['intervals'][0]))
