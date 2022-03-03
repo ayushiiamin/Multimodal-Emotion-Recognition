@@ -74,7 +74,7 @@ print("=" * 80)
 print(len(list(word_dataset[raw_words].keys())))
 print("=" * 80)
 
-some_id = list(word_dataset[raw_words].keys())[0]
+some_id = list(word_dataset[raw_words].keys())[2]         ########################################
 print(some_id)
 print("=" * 80)
 
@@ -98,7 +98,7 @@ print("=" * 80)
 print(len(list(glove_dataset[raw_words_embedded].keys())))
 print("=" * 80)
 
-some_id = list(glove_dataset[raw_words_embedded].keys())[0]
+some_id = list(glove_dataset[raw_words_embedded].keys())[2]         ########################################
 print(some_id)
 print("=" * 80)
 
@@ -123,15 +123,18 @@ def cosine_similarity(v1,v2):
     if(math.sqrt(sumxx*sumyy) != 0.0):
         return sumxy/math.sqrt(sumxx*sumyy)
 
+print("FUNCTION CREATED")
+
 print(" ")
 print("-----------Reverting the embeddings-----------")
 
 for j in range(len( ((glove_dataset[raw_words_embedded][some_id]['features'])) )):
-    if(cosine_similarity( (textTrainArr[0][3]), ((glove_dataset[raw_words_embedded][some_id]['features'][j])) ) == 1.0):
+    if(cosine_similarity( (textTrainArr[0][0]), ((glove_dataset[raw_words_embedded][some_id]['features'][j])) ) == 1.0):
         print("MATCH FOUND")
         print("j value - ", j)
         print( (word_dataset[raw_words][some_id]['features'][j]) )
         print("=" * 80)
 
 print(" ")
+print(some_id)
 print("END OF LOOP")
