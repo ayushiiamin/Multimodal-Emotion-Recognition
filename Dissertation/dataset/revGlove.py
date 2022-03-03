@@ -151,8 +151,7 @@ for k in range(len(list(word_dataset[raw_words].keys()))):
     vid_id = list(word_dataset[raw_words].keys())[k]
     print(k)
     for j in range(len( ((glove_dataset[raw_words_embedded][vid_id]['features'])) )):
-      if((cosine_similarity( (textTrainArr[1][0]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) != None):
-        if((cosine_similarity( (textTrainArr[1][0]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) == 1.0):
+        if((cosine_similarity( (textTrainArr[1][2]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) == 1.0):
             print("MATCH FOUND")
             print( (word_dataset[raw_words][vid_id]['features'][j]) )
             print("=" * 80)
