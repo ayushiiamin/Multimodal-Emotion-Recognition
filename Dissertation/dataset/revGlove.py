@@ -74,7 +74,7 @@ print("=" * 80)
 print(len(list(word_dataset[raw_words].keys())))
 print("=" * 80)
 
-some_id = list(word_dataset[raw_words].keys())[4]         ########################################
+some_id = list(word_dataset[raw_words].keys())[0]         ########################################
 print(some_id)
 print("=" * 80)
 
@@ -98,7 +98,7 @@ print("=" * 80)
 print(len(list(glove_dataset[raw_words_embedded].keys())))
 print("=" * 80)
 
-some_id = list(glove_dataset[raw_words_embedded].keys())[4]         ########################################
+some_id = list(glove_dataset[raw_words_embedded].keys())[0]         ########################################
 print(some_id)
 print("=" * 80)
 
@@ -128,14 +128,34 @@ print("FUNCTION CREATED")
 print(" ")
 print("-----------Reverting the embeddings-----------")
 
+# v1,v2 = (textTrainArr[0][12]), ((glove_dataset[raw_words_embedded][some_id]['features'][0]))
+
+# if (cosine_similarity(v1,v2) != None):
+#     print("hello")
+# else:
+#     print("bye")
+
+# for k in range(len(list(word_dataset[raw_words].keys()))):
+#     vid_id = list(word_dataset[raw_words].keys())[k]
+#     print(k)
+#     for j in range(len( ((glove_dataset[raw_words_embedded][vid_id]['features'])) )):
+#       if((cosine_similarity( (textTrainArr[0][12]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) != None):
+#         if((cosine_similarity( (textTrainArr[0][12]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) >= 0.50):
+#             print("MATCH FOUND")
+#             print( (word_dataset[raw_words][vid_id]['features'][j]) )
+#             print(cosine_similarity( (textTrainArr[0][12]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ))
+#             print("=" * 80)
+
+
 for k in range(len(list(word_dataset[raw_words].keys()))):
     vid_id = list(word_dataset[raw_words].keys())[k]
     print(k)
     for j in range(len( ((glove_dataset[raw_words_embedded][vid_id]['features'])) )):
-      if(cosine_similarity( (textTrainArr[0][5]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) == 1.0):
-        print("MATCH FOUND")
-        print( (word_dataset[raw_words][vid_id]['features'][j]) )
-        print("=" * 80)
+      if((cosine_similarity( (textTrainArr[1][0]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) != None):
+        if((cosine_similarity( (textTrainArr[1][0]), ((glove_dataset[raw_words_embedded][vid_id]['features'][j])) ) ) == 1.0):
+            print("MATCH FOUND")
+            print( (word_dataset[raw_words][vid_id]['features'][j]) )
+            print("=" * 80)
 
 # for j in range(len( ((glove_dataset[raw_words_embedded][list(glove_dataset[raw_words_embedded].keys())[4]]['features'])) )):
 #     if(cosine_similarity( (textTrainArr[0][15]), ((glove_dataset[raw_words_embedded][list(glove_dataset[raw_words_embedded].keys())[4]]['features'][j])) ) == 1.0):
