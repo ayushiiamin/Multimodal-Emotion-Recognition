@@ -1,0 +1,45 @@
+THE CURRENT WORD -  0
+THE CURRENT WORD -  1
+THE CURRENT WORD -  2
+THE CURRENT WORD -  3
+THE CURRENT WORD -  4
+THE CURRENT WORD -  5
+THE CURRENT WORD -  6
+THE CURRENT WORD -  7
+THE CURRENT WORD -  8
+THE CURRENT WORD -  9
+THE CURRENT WORD -  10
+THE CURRENT WORD -  11
+THE CURRENT WORD -  12
+THE CURRENT WORD -  13
+MATCH FOUND
+[b'robert']
+================================================================================
+THE CURRENT WORD -  14
+MATCH FOUND
+[b'todd']
+================================================================================
+THE CURRENT WORD -  15
+MATCH FOUND
+[b'and']
+================================================================================
+THE CURRENT WORD -  16
+MATCH FOUND
+[b'thank']
+================================================================================
+THE CURRENT WORD -  17
+MATCH FOUND
+[b'you']
+================================================================================
+THE CURRENT WORD -  18
+MATCH FOUND
+[b'for']
+================================================================================
+THE CURRENT WORD -  19
+MATCH FOUND
+[b'watching']
+================================================================================
+********************************************************************************
+ 
+ 
+END OF LOOP
